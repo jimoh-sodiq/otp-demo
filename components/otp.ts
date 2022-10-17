@@ -110,12 +110,12 @@ export const Otp = defineComponent({
         let temporalOtp = [...otp.value]
         temporalOtp[index] = targetValue.substring(targetValue.length - 1)
         otp.value = temporalOtp;
-        emit('update:modelValue',otp.value)
+        emit('update:modelValue',otpString.value)
         console.log(otpString.value)
       }
 
     };
-    provide("controller", api);
+    // provide("controller", api);
 
     return () =>
       otp.value.map((el, i) => {
@@ -123,7 +123,7 @@ export const Otp = defineComponent({
           ref: (el) => {
             inputRefs[i] = el;
           },
-          class: props.class,
+          class: otp.value[i] ? 'filled'+' '+props.class : props.class ,
           type: props.type,
           onKeyup: (event: KeyboardEvent) => api.handleFocus(event,i),
           onInput: (event: InputEvent) => api.handleInput(event, i),
@@ -132,6 +132,7 @@ export const Otp = defineComponent({
       });
   },
 });
+
 
 // tsx
 // (

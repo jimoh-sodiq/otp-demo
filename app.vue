@@ -29,9 +29,9 @@
       <div>Another thing here now</div>
     </TabGroup> -->
    <div class="otp">
-    <Otp class="red" :inputNumber="3" v-model="password" />
+    <Otp class="red" :inputNumber="6" v-model="password" />
    </div>
-   <button :disabled="password.includes('')">Click me</button>
+   <button :disabled="password.length !== 6">Click me</button>
    {{ password }}
   </div>
 </template>
@@ -39,7 +39,7 @@
 <script setup>
 import { TabGroup } from './components/Tabs'
 import { Otp } from './components/otp'
-const password = ref([]);
+const password = ref('');
 const confirm = ref("");
 const activeTabId = ref("400");
 </script>
@@ -57,7 +57,10 @@ const activeTabId = ref("400");
 }
 
 .red:focus {
-  background-color: red
+  background-color: green
+}
+.filled {
+  background-color: orange;
 }
 
 
